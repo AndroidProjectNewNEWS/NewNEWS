@@ -13,4 +13,12 @@
         android:text="ToggleButton"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="186dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="126dp" />
 </android.support.constraint.ConstraintLayout>
