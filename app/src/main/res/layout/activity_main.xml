@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.newnews.newnews.MainActivity">
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="186dp" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
