@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">NewNEWS</string>
-<<<<<<< HEAD
     <string name="togglebutton">ToggleButton</string>
-=======
     <string name="button">Button</string>
->>>>>>> 1f5c99d96c9d30c80a4a40731e828f493651affc
 </resources>
