@@ -1,42 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.newnews.newnews.MainActivity">
+    tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/author"
-        android:layout_alignStart="@+id/author"
-        android:layout_marginBottom="90dp"
-        android:ems="10"
-        android:text="@string/button" />
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:textColor="#6495ED"
+        android:text="New News"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
 
-    <EditText
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/author" />
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txt_title"/>
 
-    <Button
-        android:id="@+id/button_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/author"
-        android:layout_alignStart="@+id/author"
-        android:layout_below="@+id/author"
-        android:layout_marginTop="81dp"
-        android:text="@string/button" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </RelativeLayout>
