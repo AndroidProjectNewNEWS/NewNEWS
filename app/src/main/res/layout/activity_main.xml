@@ -34,4 +34,9 @@
         android:layout_below="@+id/author"
         android:layout_marginTop="81dp"
         android:text="@string/button" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
