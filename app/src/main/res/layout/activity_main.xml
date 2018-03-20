@@ -5,9 +5,33 @@
     android:layout_height="match_parent"
     tools:context="com.newnews.newnews.MainActivity">
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
+    <EditText
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/togglebutton" />
+        android:layout_above="@+id/author"
+        android:layout_alignStart="@+id/author"
+        android:layout_marginBottom="90dp"
+        android:ems="10"
+        android:text="@string/title" />
+
+    <EditText
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/author" />
+
+    <Button
+        android:id="@+id/button_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/author"
+        android:layout_alignStart="@+id/author"
+        android:layout_below="@+id/author"
+        android:layout_marginTop="81dp"
+        android:text="@string/button" />
 </RelativeLayout>

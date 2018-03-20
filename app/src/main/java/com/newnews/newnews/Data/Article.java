@@ -3,16 +3,14 @@ package com.newnews.newnews.Data;
 public class Article {
     private String title;
     private String author;
-    private String publisher;
 
     public Article() {
         // Empty constructor is required for Firebase function.
     }
 
-    public Article(String title, String author, String publisher) {
+    public Article(String title, String author) {
         this.title = title;
         this.author = author;
-        this.publisher=publisher;
     }
 
     public String getTitle() {
@@ -29,13 +27,5 @@ public class Article {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 }
