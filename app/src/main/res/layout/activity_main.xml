@@ -13,7 +13,7 @@
         android:layout_alignStart="@+id/author"
         android:layout_marginBottom="90dp"
         android:ems="10"
-        android:text="" />
+        android:text="@string/button" />
 
     <EditText
         android:id="@+id/author"
