@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.newnews.newnews"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -26,6 +26,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-database:11.8.0'
+
+    compile 'com.android.support:recyclerview-v7:27.1.0'
 }
 
 
