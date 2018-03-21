@@ -44,6 +44,7 @@ public class FragmentList extends Fragment {
                 .setLayout(R.layout.list_row)
                 .setQuery(query, Article.class)
                 .build();
+
         adapter = new FirebaseListAdapter<Article>(options) {
             @Override
             protected void populateView(View v, Article model, int position) {
