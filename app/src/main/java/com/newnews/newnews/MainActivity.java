@@ -1,17 +1,15 @@
 package com.newnews.newnews;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.newnews.newnews.Data.Article;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class MainActivity extends AppCompatActivity {
+/*
     EditText title, author;
     Button button_upload;
 
@@ -38,4 +36,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ref.push().setValue(newArticle);
         }
     }
+    */
+
+    private DatabaseReference ref;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ref= FirebaseDatabase.getInstance().getReference();
+
+        FragmentList fragmentList=new FragmentList();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.list_conrainer, fragmentList).commit();
+    }
+
+
 }
