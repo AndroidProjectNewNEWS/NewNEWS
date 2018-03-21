@@ -39,24 +39,24 @@ public class FragmentList extends Fragment {
 
         ref = FirebaseDatabase.getInstance().getReference();
 
-        Query query=ref.orderByKey();
+        Query query = ref.orderByKey();
         FirebaseListOptions<Article> options = new FirebaseListOptions.Builder<Article>()
                 .setLayout(R.layout.list_row)
-                .setQuery(query,Article.class)
+                .setQuery(query, Article.class)
                 .build();
         adapter = new FirebaseListAdapter<Article>(options) {
             @Override
             protected void populateView(View v, Article model, int position) {
-                Toast.makeText(getContext(), model.getTitle(),Toast.LENGTH_SHORT).show();
-                TextView title_row =v.findViewById(R.id.title_row);
-                TextView author_row =v.findViewById(R.id.auther_row);
+                Toast.makeText(getContext(), model.getTitle(), Toast.LENGTH_SHORT).show();
+                TextView title_row = v.findViewById(R.id.title_row);
+                TextView author_row = v.findViewById(R.id.auther_row);
 
                 title_row.setText(model.getTitle());
                 author_row.setText(model.getAuthor());
             }
         };
 
-        listView =view.findViewById(R.id.listview);
+        listView = view.findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
         return view;

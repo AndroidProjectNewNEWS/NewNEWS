@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ref= FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference();
 
-        FragmentList fragmentList=new FragmentList();
-        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentList fragmentList = new FragmentList();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.list_conrainer, fragmentList).commit();
     }
 
