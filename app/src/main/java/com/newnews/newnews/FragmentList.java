@@ -1,60 +1,78 @@
 package com.newnews.newnews;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.newnews.newnews.Data.Article;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.newnews.newnews.Model.Article;
+import com.squareup.picasso.Picasso;
 
 public class FragmentList extends Fragment {
 
-    RecyclerView recyclerView;
-
-    private DatabaseReference ref;
+    // todo: Add listener
+    private RecyclerView recyclerView;
+    private DatabaseReference databaseRef;
+    private StorageReference storageRef;
     private FirebaseRecyclerAdapter recyclerAdapter;
 
     public FragmentList() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_list, container, false);
+        // Fragment layout
+        final View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("articles");
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Adapter
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
+        storageRef = FirebaseStorage.getInstance().getReference().child("titleImages");
 
-        Query query=ref.orderByKey();
+        Query query = databaseRef.orderByKey();
         FirebaseRecyclerOptions<Article> options = new FirebaseRecyclerOptions.Builder<Article>()
                 .setQuery(query, Article.class)
                 .build();
         recyclerAdapter = new FirebaseRecyclerAdapter<Article, ArticleViewHolder>(options) {
+            Uri imgUri;
+
             @Override
             protected void onBindViewHolder(@NonNull ArticleViewHolder holder, int position, @NonNull Article model) {
-                Toast.makeText(getContext(),model.getTitle(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), model.getTitle(), Toast.LENGTH_SHORT).show();
                 holder.setTitle(model.getTitle());
                 holder.setAuthor(model.getAuthor());
+                storageRef.child(String.valueOf(position) + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imgUri = uri;
+                    }
+                });
+
+                holder.setImage(getContext(), imgUri);
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //start new activity to show article/webview
+                        //start new activity to show article/ webView
                     }
                 });
             }
@@ -65,11 +83,13 @@ public class FragmentList extends Fragment {
                 return new ArticleViewHolder(itemView);
             }
         };
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
 
-        return view;
+        return rootView;
     }
 
+    // onStart, onStop are to start and stop listening FirebaseRecyclerAdapter
     @Override
     public void onStart() {
         super.onStart();
@@ -82,22 +102,28 @@ public class FragmentList extends Fragment {
         recyclerAdapter.stopListening();
     }
 
-    public static class ArticleViewHolder extends RecyclerView.ViewHolder {
+    // Recycler ViewHolder
+    static class ArticleViewHolder extends RecyclerView.ViewHolder {
         View mView;
 
-        public ArticleViewHolder(View itemView) {
+        ArticleViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
 
-        public void setTitle(String title) {
-            TextView title_row = itemView.findViewById(R.id.title_row);
+        void setTitle(String title) {
+            TextView title_row = itemView.findViewById(R.id.title);
             title_row.setText(title);
         }
 
-        public void setAuthor(String author) {
-            TextView author_row = itemView.findViewById(R.id.author_row);
+        void setAuthor(String author) {
+            TextView author_row = itemView.findViewById(R.id.author);
             author_row.setText(author);
+        }
+
+        void setImage(Context context, Uri imgUrl) {
+            ImageView image = itemView.findViewById(R.id.image_entry);
+            Picasso.with(context).load(imgUrl).into(image);
         }
     }
 }
