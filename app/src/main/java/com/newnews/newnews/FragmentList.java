@@ -43,6 +43,7 @@ public class FragmentList extends Fragment {
         // Fragment layout
         final View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
+
         // Adapter
         recyclerView = rootView.findViewById(R.id.recyclerView);
         databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
@@ -85,6 +86,7 @@ public class FragmentList extends Fragment {
         };
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
+
 
         return rootView;
     }
