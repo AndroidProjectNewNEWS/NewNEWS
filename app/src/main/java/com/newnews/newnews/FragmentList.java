@@ -1,22 +1,19 @@
 package com.newnews.newnews;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -43,32 +40,28 @@ public class FragmentList extends Fragment {
         // Fragment layout
         final View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
-
         // Adapter
         recyclerView = rootView.findViewById(R.id.recyclerView);
         databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
         storageRef = FirebaseStorage.getInstance().getReference().child("titleImages");
 
+
         Query query = databaseRef.orderByKey();
         FirebaseRecyclerOptions<Article> options = new FirebaseRecyclerOptions.Builder<Article>()
                 .setQuery(query, Article.class)
                 .build();
-        recyclerAdapter = new FirebaseRecyclerAdapter<Article, ArticleViewHolder>(options) {
-            Uri imgUri;
 
+        recyclerAdapter = new FirebaseRecyclerAdapter<Article, ArticleViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ArticleViewHolder holder, int position, @NonNull Article model) {
-                Toast.makeText(getContext(), model.getTitle(), Toast.LENGTH_SHORT).show();
                 holder.setTitle(model.getTitle());
-                holder.setAuthor(model.getAuthor());
-                storageRef.child(String.valueOf(position) + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        imgUri = uri;
-                    }
-                });
 
-                holder.setImage(getContext(), imgUri);
+                holder.setAuthor(model.getAuthor());
+
+                final StorageReference imgRef = storageRef.child(String.valueOf(position) + ".jpg");
+                Log.d("hehe", imgRef.toString());
+
+                holder.setImage(model.getImgUrl());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -84,6 +77,7 @@ public class FragmentList extends Fragment {
                 return new ArticleViewHolder(itemView);
             }
         };
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
 
@@ -95,6 +89,7 @@ public class FragmentList extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
         recyclerAdapter.startListening();
     }
 
@@ -123,11 +118,15 @@ public class FragmentList extends Fragment {
             author_row.setText(author);
         }
 
-        void setImage(Context context, Uri imgUrl) {
+        void setImage(String imgUrl) {
             ImageView image = itemView.findViewById(R.id.image_entry);
-            Picasso.with(context).load(imgUrl).into(image);
+            if (imgUrl != null && imgUrl.length() > 0) {
+                Picasso.with(mView.getContext()).load(imgUrl).into(image);
+            }
+            Log.d("rr", imgUrl);
         }
     }
+
 }
 
 

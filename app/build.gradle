@@ -40,18 +40,22 @@ dependencies {
 
     //Database
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.firebase:firebase-core:11.8.0'
     implementation 'com.google.firebase:firebase-messaging:11.8.0'
     implementation 'com.google.firebase:firebase-database:11.8.0'
-    implementation 'com.firebaseui:firebase-ui-database:3.2.2'
-    implementation 'com.firebaseui:firebase-ui-database:3.2.2'
-    implementation 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
     implementation 'com.firebaseui:firebase-ui:3.2.2'
+    implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     implementation 'com.firebaseui:firebase-ui-storage:3.2.2'
 
     //Interaction
     compile 'com.facebook.android:facebook-android-sdk:4.25.0'
 }
+
 
 
 

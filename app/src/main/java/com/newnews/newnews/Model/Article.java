@@ -1,19 +1,18 @@
 package com.newnews.newnews.Model;
 
-import android.net.Uri;
-
 public class Article {
     private String title;
     private String author;
-    private Uri imgUrl;
+    private String imgUrl;
 
     public Article() {
         // Empty constructor is required for Firebase function.
     }
 
-    public Article(String title, String author, Uri imgUrl) {
+    public Article(String title, String author, String imgUrl) {
         this.title = title;
         this.author = author;
+        this.imgUrl=imgUrl;
     }
 
     public String getTitle() {
@@ -30,5 +29,13 @@ public class Article {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
