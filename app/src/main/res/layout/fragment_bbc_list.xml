@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.newnews.newnews.WorldFragment">
+    tools:context="com.newnews.newnews.BBCFragment">
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/listview_bbc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

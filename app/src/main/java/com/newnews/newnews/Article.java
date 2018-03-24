@@ -1,4 +1,4 @@
-package com.newnews.newnews.Model;
+package com.newnews.newnews;
 
 public class Article {
     private String title;

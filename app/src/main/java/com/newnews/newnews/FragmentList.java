@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.newnews.newnews.Model.Article;
 import com.squareup.picasso.Picasso;
 
 public class FragmentList extends Fragment {
@@ -29,6 +28,7 @@ public class FragmentList extends Fragment {
     private DatabaseReference databaseRef;
     private StorageReference storageRef;
     private FirebaseRecyclerAdapter recyclerAdapter;
+
 
     public FragmentList() {
         // Required empty public constructor
@@ -44,7 +44,6 @@ public class FragmentList extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
         storageRef = FirebaseStorage.getInstance().getReference().child("titleImages");
-
 
         Query query = databaseRef.orderByKey();
         FirebaseRecyclerOptions<Article> options = new FirebaseRecyclerOptions.Builder<Article>()
@@ -73,14 +72,13 @@ public class FragmentList extends Fragment {
 
             @Override
             public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row, parent, false);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_recycler, parent, false);
                 return new ArticleViewHolder(itemView);
             }
         };
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
-
 
         return rootView;
     }
@@ -109,17 +107,17 @@ public class FragmentList extends Fragment {
         }
 
         void setTitle(String title) {
-            TextView title_row = itemView.findViewById(R.id.title);
+            TextView title_row = itemView.findViewById(R.id.title_recycler);
             title_row.setText(title);
         }
 
         void setAuthor(String author) {
-            TextView author_row = itemView.findViewById(R.id.author);
+            TextView author_row = itemView.findViewById(R.id.author_recycler);
             author_row.setText(author);
         }
 
         void setImage(String imgUrl) {
-            ImageView image = itemView.findViewById(R.id.image_entry);
+            ImageView image = itemView.findViewById(R.id.image_recycler);
             if (imgUrl != null && imgUrl.length() > 0) {
                 Picasso.with(mView.getContext()).load(imgUrl).into(image);
             }
