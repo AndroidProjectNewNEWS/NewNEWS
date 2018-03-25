@@ -1,5 +1,6 @@
 package com.newnews.newnews;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,18 +18,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class FragmentList extends Fragment {
 
-    // todo: Add listener
-    private RecyclerView recyclerView;
-    private DatabaseReference databaseRef;
-    private StorageReference storageRef;
     private FirebaseRecyclerAdapter recyclerAdapter;
-
 
     public FragmentList() {
         // Required empty public constructor
@@ -41,31 +35,28 @@ public class FragmentList extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_list, container, false);
 
         // Adapter
-        recyclerView = rootView.findViewById(R.id.recyclerView);
-        databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
-        storageRef = FirebaseStorage.getInstance().getReference().child("titleImages");
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("articles");
 
         Query query = databaseRef.orderByKey();
         FirebaseRecyclerOptions<Article> options = new FirebaseRecyclerOptions.Builder<Article>()
                 .setQuery(query, Article.class)
                 .build();
-
         recyclerAdapter = new FirebaseRecyclerAdapter<Article, ArticleViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ArticleViewHolder holder, int position, @NonNull Article model) {
+            protected void onBindViewHolder(@NonNull ArticleViewHolder holder, int position, @NonNull final Article model) {
                 holder.setTitle(model.getTitle());
-
                 holder.setAuthor(model.getAuthor());
-
-                final StorageReference imgRef = storageRef.child(String.valueOf(position) + ".jpg");
-                Log.d("hehe", imgRef.toString());
-
-                holder.setImage(model.getImgUrl());
+                holder.setImage(model.getEntryImgUrl());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //start new activity to show article/ webView
+                        Intent i = new Intent(getActivity(), DetailActivity.class);
+                        i.putExtra("source", "detail");
+                        i.putExtra("uid", model.getUid());
+                        Log.d("test",model.getUid());
+                        startActivity(i);
                     }
                 });
             }
@@ -121,7 +112,6 @@ public class FragmentList extends Fragment {
             if (imgUrl != null && imgUrl.length() > 0) {
                 Picasso.with(mView.getContext()).load(imgUrl).into(image);
             }
-            Log.d("rr", imgUrl);
         }
     }
 

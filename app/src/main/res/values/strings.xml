@@ -20,4 +20,7 @@
     <string name="newnews">NewNEWS</string>
     <string name="bbc">BBC</string>
     <string name="google">Google</string>
+    <string name="news_title">News Title</string>
+    <string name="image_description">Image Description</string>
+    <string name="new_content">New content</string>
 </resources>

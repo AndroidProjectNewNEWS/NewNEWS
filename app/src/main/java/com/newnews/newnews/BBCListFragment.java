@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +99,9 @@ public class BBCListFragment extends Fragment {
                      public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                         Intent i = new Intent(getActivity(), DetailActivity.class);
+                        i.putExtra("source","bbc");
                         i.putExtra("url", dataList.get(+position).get(KEY_URL));
+                         Log.d("test", "bbc about to start detailactivity with source "+i.getExtras().get("source")+" url: "+i.getExtras().get("url"));
                         startActivity(i);
                     }
                 });
