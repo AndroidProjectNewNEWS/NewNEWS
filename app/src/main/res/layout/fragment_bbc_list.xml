@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.newnews.newnews.FragmentList">
+    tools:context="com.newnews.newnews.BBCFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:id="@+id/listview_bbc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
