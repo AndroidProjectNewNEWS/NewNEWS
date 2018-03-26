@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
             return true;
-        } else if (id == R.id.action_register) {
+        }
+        /*else if (id == R.id.action_register) {
 
             LayoutInflater li = LayoutInflater.from(this);
             final View dialogView = li.inflate(R.layout.dialog_register, null);
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.action_signin) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -221,8 +222,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_font) {
 
         } else if (id == R.id.nav_about) {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(intent);
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
