@@ -37,13 +37,12 @@ public class BBCListFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bbc_list, container, false);
-        listNews = rootView.findViewById(R.id.listview_bbc);
+     /*   listNews = rootView.findViewById(R.id.listview_bbc);
 
 
         if (Function.isNetworkAvailable(getContext())) {
@@ -51,7 +50,7 @@ public class BBCListFragment extends Fragment {
             newsTask.execute();
         } else {
             Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
-        }
+        }*/
         return rootView;
     }
 
@@ -96,12 +95,12 @@ public class BBCListFragment extends Fragment {
 
 
                 listNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                     public void onItemClick(AdapterView<?> parent, View view,
+                    public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                         Intent i = new Intent(getActivity(), DetailActivity.class);
-                        i.putExtra("source","bbc");
+                        i.putExtra("source", "bbc");
                         i.putExtra("url", dataList.get(+position).get(KEY_URL));
-                         Log.d("test", "bbc about to start detailactivity with source "+i.getExtras().get("source")+" url: "+i.getExtras().get("url"));
+                        Log.d("test", "bbc about to start detailactivity with source " + i.getExtras().get("source") + " url: " + i.getExtras().get("url"));
                         startActivity(i);
                     }
                 });

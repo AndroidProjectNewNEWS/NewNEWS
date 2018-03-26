@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_home"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_menu_history"
@@ -35,15 +35,10 @@
         </menu>
     </item>
 
-
-    <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_about"
-                android:title="About" />
-        </menu>
-    </item>
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_about"
+            android:title="About" />
 
     </group>
 
