@@ -29,17 +29,20 @@ public class DetailActivity extends AppCompatActivity {
         if (getIntent().getStringExtra("source").equals("bbc")) {
             BBCDetailFragment bbcDetailFragment = new BBCDetailFragment();
             bbcDetailFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("BBC");
             manager.beginTransaction().replace(R.id.container_detail, bbcDetailFragment).commit();
         }
         if (getIntent().getStringExtra("source").equals("about")) {
             AboutFragment aboutFragment = new AboutFragment();
             aboutFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("About");
             manager.beginTransaction().replace(R.id.container_detail, aboutFragment).commit();
         }
 
         if (getIntent().getStringExtra("source").equals("create")) {
             CreateFragment createFragment = new CreateFragment();
             createFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("Cancel");
             manager.beginTransaction().replace(R.id.container_detail, createFragment).commit();
         }
 

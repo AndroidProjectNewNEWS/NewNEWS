@@ -1,5 +1,6 @@
 package com.newnews.newnews;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -55,7 +56,7 @@ public class FragmentList extends Fragment {
                         Intent i = new Intent(getActivity(), DetailActivity.class);
                         i.putExtra("source", "detail");
                         i.putExtra("uid", model.getUid());
-                        Log.d("test",model.getUid());
+                        Log.d("test", model.getUid());
                         startActivity(i);
                     }
                 });

@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailFragment extends Fragment {
 
-    TextView title, imgDes, content;
+    TextView title, imgDes, content,time,author;
     ImageView bodyImg;
 
     DatabaseReference articleRef;
@@ -39,8 +39,10 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         title = rootView.findViewById(R.id.title_detail);
-        imgDes = rootView.findViewById(R.id.bodyImgDescription);
-        content = rootView.findViewById(R.id.content);
+        time=rootView.findViewById(R.id.time_detail);
+        author=rootView.findViewById(R.id.author_detail);
+        imgDes = rootView.findViewById(R.id.bodyImgDescription_detail);
+        content = rootView.findViewById(R.id.content_detail);
         bodyImg = rootView.findViewById(R.id.bodyImg);
 
         articleUID = getArguments().getString("uid");
@@ -53,6 +55,8 @@ public class DetailFragment extends Fragment {
                 Log.d("hehe", "datasnapshot: " + dataSnapshot.toString());
                 article = dataSnapshot.getValue(Article.class);
                 title.setText(article.getTitle());
+                time.setText(article.getTime());
+                author.setText(article.getAuthor());
                 Picasso.with(getContext()).load(article.getBodyImgUrl()).into(bodyImg);
                 content.setText(article.getContent());
                 imgDes.setText(article.getBodyImgDes());
