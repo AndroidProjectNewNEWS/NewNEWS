@@ -123,6 +123,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+
+        } else if (id == R.id.nav_search) {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_create) {
             Intent i = new Intent(getApplicationContext(), DetailActivity.class);
             i.putExtra("source", "create");
