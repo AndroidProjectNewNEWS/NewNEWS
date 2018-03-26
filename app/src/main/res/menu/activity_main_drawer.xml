@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_home"
             android:title="@string/home" />
         <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/ic_menu_history"
-            android:title="History" />
+            android:id="@+id/nav_create"
+            android:icon="@drawable/ic_action_create"
+            android:title="Create News" />
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_menu_search"

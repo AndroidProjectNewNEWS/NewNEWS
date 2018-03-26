@@ -123,14 +123,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-        } else if (id == R.id.nav_history) {
-
+        } else if (id == R.id.nav_create) {
+            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+            i.putExtra("source", "create");
+            startActivity(i);
         } else if (id == R.id.nav_notification) {
 
         } else if (id == R.id.nav_font) {
 
         } else if (id == R.id.nav_about) {
-
+            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+            i.putExtra("source", "about");
+            startActivity(i);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

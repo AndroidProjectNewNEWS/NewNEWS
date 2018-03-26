@@ -1,10 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
-    tools:context="com.newnews.newnews.DetailFragment">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="com.newnews.newnews.CreateFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/title_detail"
+            <EditText
+                android:id="@+id/title_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -29,31 +29,30 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/bodyImg"
+                android:id="@+id/bodyImg_create"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:src="@mipmap/ic_launcher_round"
                 tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/bodyImgDescription"
+            <EditText
+                android:id="@+id/bodyImgDescription_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/image_description"
-                android:textAlignment="textStart" />
+                android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
 
-            <TextView
-                android:id="@+id/content"
+            <EditText
+                android:id="@+id/content_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:text="@string/new_content"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
+                android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
 
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+
+</FrameLayout>

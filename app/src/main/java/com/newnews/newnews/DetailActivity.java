@@ -31,6 +31,17 @@ public class DetailActivity extends AppCompatActivity {
             bbcDetailFragment.setArguments(getIntent().getExtras());
             manager.beginTransaction().replace(R.id.container_detail, bbcDetailFragment).commit();
         }
+        if (getIntent().getStringExtra("source").equals("about")) {
+            AboutFragment aboutFragment = new AboutFragment();
+            aboutFragment.setArguments(getIntent().getExtras());
+            manager.beginTransaction().replace(R.id.container_detail, aboutFragment).commit();
+        }
+
+        if (getIntent().getStringExtra("source").equals("create")) {
+            CreateFragment createFragment = new CreateFragment();
+            createFragment.setArguments(getIntent().getExtras());
+            manager.beginTransaction().replace(R.id.container_detail, createFragment).commit();
+        }
 
     }
 
