@@ -28,17 +28,34 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="203dp"
-            android:adjustViewBounds="true"
+            android:layout_height="189dp"
             android:background="@drawable/aboutimg"
-            android:cropToPadding="false"
+            android:cropToPadding="true"
             android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textStyle="bold" />
+            android:text="New News was founded back in 1805 when the populace was having trouble locating a platform that could provide (un)reliable news both locally and globally. Three University students set out to create an Android application in order to fill this gap. "
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If you happen to run in to any problems while using the New News application, please refer to the help link in the upper right menu options."
+            android:textAlignment="textStart" />
     </LinearLayout>
 </FrameLayout>
