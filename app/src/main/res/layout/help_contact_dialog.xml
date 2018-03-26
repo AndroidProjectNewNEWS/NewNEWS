@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PHONE"
-            android:textColor="@color/com_facebook_blue"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -31,13 +31,14 @@
                 android:layout_weight="1"
                 android:text="+46 70 6556 303"
                 android:textAlignment="textStart"
+                android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_action_call" />
+                app:srcCompat="@drawable/ic_action_call_red" />
 
         </LinearLayout>
     </LinearLayout>
@@ -54,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EMAIL"
-            android:textColor="@color/com_facebook_blue"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -69,13 +70,14 @@
                 android:layout_weight="1"
                 android:text="info@newnews.com"
                 android:textAlignment="textStart"
+                android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_action_mail" />
+                app:srcCompat="@drawable/ic_action_mail_red" />
 
         </LinearLayout>
     </LinearLayout>
