@@ -6,6 +6,16 @@
         android:orderInCategory="100"
         android:title="@string/action_help"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_register"
+        android:orderInCategory="100"
+        android:title="@string/action_register"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_signin"
+        android:orderInCategory="100"
+        android:title="@string/action_signin"
+        app:showAsAction="never" />
     <!--<item
         android:id="@+id/action_about"
         android:orderInCategory="100"

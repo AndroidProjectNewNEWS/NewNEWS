@@ -1,7 +1,9 @@
 package com.newnews.newnews;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,12 +17,24 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static android.os.Debug.waitForDebugger;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +42,10 @@ public class MainActivity extends AppCompatActivity
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+    private View dialogView;
+
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +53,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
+        progressDialog = new ProgressDialog(this);
     }
 
     @Override
@@ -73,19 +94,21 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Drawer Navigation Event Listener
+     **/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_help) {
             LayoutInflater li = LayoutInflater.from(this);
-            View dialogView = li.inflate(R.layout.help_contact_dialog, null);
+            dialogView = li.inflate(R.layout.help_contact_dialog, null);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Help");
-            // alertDialogBuilder.setIcon(R.drawable.ic_launcher);
+            alertDialogBuilder.setIcon(R.drawable.ic_help);
             alertDialogBuilder.setView(dialogView);
-            final TextView phone = (TextView) dialogView.findViewById(R.id.mailText);
-            final TextView mail = (TextView) dialogView.findViewById(R.id.mailText);
+
             // set dialog message
             alertDialogBuilder
                     .setCancelable(false)
@@ -105,6 +128,79 @@ public class MainActivity extends AppCompatActivity
                             });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
+            return true;
+        } else if (id == R.id.action_register) {
+
+            LayoutInflater li = LayoutInflater.from(this);
+            final View dialogView = li.inflate(R.layout.dialog_register, null);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Register");
+            alertDialogBuilder.setView(dialogView);
+
+            alertDialogBuilder
+                    .setCancelable(true)
+                    .setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    final TextView emailText = dialogView.findViewById(R.id.usernameText);
+                                    final TextView passwordText = dialogView.findViewById(R.id.passwordText);
+
+                                    final String email = emailText.toString().trim();
+                                    final String password = passwordText.toString().trim();
+
+                                    if (TextUtils.isEmpty(email)) {
+                                        Toast.makeText(getApplicationContext(), "Please enter e-mail.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                    if (TextUtils.isEmpty(password)) {
+                                        Toast.makeText(getApplicationContext(), "Please enter password.", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+
+                                    progressDialog.setMessage("Registering...");
+                                    progressDialog.show();
+
+                                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+
+                                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                String uid = user.getUid();
+
+                                                // Create new objects
+                                                User newUser = new User(email, password, uid);
+
+                                                // Import objects from firebase
+                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                                String key = databaseReference.push().getKey();
+                                                databaseReference.child("users").child(uid).setValue(newUser);
+
+                                                Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                                MainActivity.this.startActivity(intent);
+                                            } else {
+                                                Toast.makeText(MainActivity.this, "User registered failed", Toast.LENGTH_LONG).show();
+                                            }
+                                            progressDialog.dismiss();
+                                        }
+                                    });
+
+                                    //dialog.cancel();
+                                }
+                            })
+                    .setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            return true;
+        } else if (id == R.id.action_signin) {
             return true;
         }
 
