@@ -16,12 +16,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     private ViewPager mViewPager;
     private LinearLayout call_contact,email_contact;
+
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,22 @@ public class MainActivity extends AppCompatActivity
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        searchView = findViewById(R.id.app_bar_search);
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(i);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                return false;
+            }
+        });*/
     }
 
     @Override
