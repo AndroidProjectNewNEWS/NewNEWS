@@ -44,7 +44,6 @@ public class BBCListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_bbc_list, container, false);
         listNews = rootView.findViewById(R.id.listview_bbc);
 
-
         if (Function.isNetworkAvailable(getContext())) {
             DownloadNews newsTask = new DownloadNews();
             newsTask.execute();

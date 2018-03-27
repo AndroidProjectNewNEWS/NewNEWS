@@ -8,38 +8,30 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_home"
             android:title="@string/home" />
-        <item
-            android:id="@+id/nav_create"
-            android:icon="@drawable/ic_action_create"
-            android:title="Create News" />
-        <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_menu_search"
-            android:title="Search" />
     </group>
 
-    <item android:title="Settings">
+    <item android:title="Admin">
         <menu>
+
             <item
-                android:id="@+id/nav_notification"
-                android:icon="@drawable/ic_menu_notification"
-                android:title="Notification" />
+                android:id="@+id/nav_create"
+                android:icon="@drawable/ic_action_create"
+                android:title="Create News" />
             <item
-                android:id="@+id/nav_font"
-                android:icon="@drawable/ic_menu_font"
-                android:title="Font Size" />
-            <item
-                android:id="@+id/nav_style"
-                android:icon="@drawable/ic_menu_style"
-                android:title="App Style" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_action_logout"
+                android:title="Log out" />
         </menu>
     </item>
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_about"
-            android:title="About" />
-
-    </group>
-
+    <item android:title="NewNEWS">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_action_call"
+                android:title="Contact us" />
+            <item
+                android:id="@+id/nav_about"
+                android:title="About" />
+        </menu>
+    </item>
 </menu>

@@ -47,6 +47,12 @@ public class DetailActivity extends AppCompatActivity {
             toolbar.setTitle("Cancel");
             manager.beginTransaction().replace(R.id.container_detail, createFragment).commit();
         }
+        if (getIntent().getStringExtra("source").equals("login")) {
+            LoginFragment loginFragment = new LoginFragment();
+            loginFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("Cancel");
+            manager.beginTransaction().replace(R.id.container_detail, loginFragment).commit();
+        }
 
     }
 
