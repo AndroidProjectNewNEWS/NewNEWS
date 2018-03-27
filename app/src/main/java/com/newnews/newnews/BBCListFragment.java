@@ -42,7 +42,7 @@ public class BBCListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bbc_list, container, false);
-     /*   listNews = rootView.findViewById(R.id.listview_bbc);
+        listNews = rootView.findViewById(R.id.listview_bbc);
 
 
         if (Function.isNetworkAvailable(getContext())) {
@@ -50,7 +50,7 @@ public class BBCListFragment extends Fragment {
             newsTask.execute();
         } else {
             Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
-        }*/
+        }
         return rootView;
     }
 

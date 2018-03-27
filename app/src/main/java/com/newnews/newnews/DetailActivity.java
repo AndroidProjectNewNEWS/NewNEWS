@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class DetailActivity extends AppCompatActivity {
     @Override
@@ -29,17 +31,20 @@ public class DetailActivity extends AppCompatActivity {
         if (getIntent().getStringExtra("source").equals("bbc")) {
             BBCDetailFragment bbcDetailFragment = new BBCDetailFragment();
             bbcDetailFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("BBC");
             manager.beginTransaction().replace(R.id.container_detail, bbcDetailFragment).commit();
         }
         if (getIntent().getStringExtra("source").equals("about")) {
             AboutFragment aboutFragment = new AboutFragment();
             aboutFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("About");
             manager.beginTransaction().replace(R.id.container_detail, aboutFragment).commit();
         }
 
         if (getIntent().getStringExtra("source").equals("create")) {
             CreateFragment createFragment = new CreateFragment();
             createFragment.setArguments(getIntent().getExtras());
+            toolbar.setTitle("Cancel");
             manager.beginTransaction().replace(R.id.container_detail, createFragment).commit();
         }
 
@@ -50,4 +55,5 @@ public class DetailActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
 }
