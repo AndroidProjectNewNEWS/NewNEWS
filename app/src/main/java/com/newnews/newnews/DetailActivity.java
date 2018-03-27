@@ -51,14 +51,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_detail_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
 }

@@ -2,27 +2,27 @@ package com.newnews.newnews;
 
 public class Article {
     private String title;
-    private String author;
-    private String bodyImgUrl;
-    private String entryImgUrl;
-    private String content;
     private String time;
+    private String author;
+    private String imgUrl;
+    private String imgDes;
+    private String content;
     private String uid;
-    private String bodyImgDes;
+    private String url;
 
     public Article() {
         // Empty constructor is required for Firebase function.
     }
 
-    public Article(String title, String author, String bodyImgUrl, String entryImgUrl, String content, String time, String uid, String bodyImgDes) {
+    public Article(String title, String time, String author, String imgUrl, String imgDes, String content, String uid, String url) {
         this.title = title;
-        this.author = author;
-        this.bodyImgUrl = bodyImgUrl;
-        this.entryImgUrl = entryImgUrl;
-        this.content = content;
         this.time = time;
+        this.author = author;
+        this.imgUrl = imgUrl;
+        this.imgDes = imgDes;
+        this.content = content;
         this.uid = uid;
-        this.bodyImgDes = bodyImgDes;
+        this.url = url;
     }
 
     public String getTitle() {
@@ -33,62 +33,59 @@ public class Article {
         this.title = title;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-
-    public String getBodyImgUrl() {
-        return bodyImgUrl;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-
-    public String getEntryImgUrl() {
-        return entryImgUrl;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgDes() {
+        return imgDes;
+    }
+
+    public void setImgDes(String imgDes) {
+        this.imgDes = imgDes;
+    }
 
     public String getContent() {
         return content;
     }
 
-
-    public String getTime() {
-        return time;
-    }
-
-    /*
-     public void setAuthor(String author) {
-        this.author = author;
-    }
-        public void setBodyImgUrl(String bodyImgUrl) {
-        this.bodyImgUrl = bodyImgUrl;
-    }
-    public void setEntryImgUrl(String entryImaUrl) {
-        this.entryImgUrl = entryImaUrl;
-    }
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
- public void setBodyImgDes(String bodyImgDes) {
-        this.bodyImgDes = bodyImgDes;
-    }
-    public void setTime(String time) {
-        this.time = time;
-    }
     public void setContent(String content) {
         this.content = content;
-    }*/
-
+    }
 
     public String getUid() {
         return uid;
     }
 
-
-    public String getBodyImgDes() {
-        return bodyImgDes;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
+    public String getUrl() {
+        return url;
+    }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

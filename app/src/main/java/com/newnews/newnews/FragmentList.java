@@ -48,7 +48,7 @@ public class FragmentList extends Fragment {
             protected void onBindViewHolder(@NonNull ArticleViewHolder holder, int position, @NonNull final Article model) {
                 holder.setTitle(model.getTitle());
                 holder.setAuthor(model.getAuthor());
-                holder.setImage(model.getEntryImgUrl());
+                holder.setImage(model.getImgUrl());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
