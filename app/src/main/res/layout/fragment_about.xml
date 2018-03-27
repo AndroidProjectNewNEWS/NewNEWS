@@ -1,44 +1,120 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context="com.newnews.newnews.AboutFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="About NewNEWS"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Thanks for using the New News Android Application! We here at New News strive to provide only the most trustworthy news. By using this application, you gain access to not only worldwide news outlets but local news curated by locals as well."
-            android:textAlignment="textStart" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="About NewNEWS"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="203dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/aboutimg"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Thanks for using the New News Android Application! We here at New News strive to provide only the most trustworthy news. By using this application, you gain access to not only worldwide news outlets but local news curated by locals as well."
+                android:textAlignment="textStart" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="189dp"
+                android:background="@drawable/aboutimg"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="New News was founded back in 1805 when the populace was having trouble locating a platform that could provide (un)reliable news both locally and globally. Three University students set out to create an Android application in order to fill this gap. "
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If you happen to run in to any problems while using the New News application, please refer to the help link in the upper right menu options."
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="About Our Team"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/team_philip" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/team_danfeng" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/team_george" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Philip"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Danfeng"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="George"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>
