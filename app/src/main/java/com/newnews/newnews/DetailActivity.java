@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class DetailActivity extends AppCompatActivity {
     @Override
@@ -46,6 +48,12 @@ public class DetailActivity extends AppCompatActivity {
             manager.beginTransaction().replace(R.id.container_detail, createFragment).commit();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
